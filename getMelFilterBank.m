@@ -4,6 +4,12 @@ function melFilterBank = getMelFilterBank(samplingFrequency, NFFT, filterCount)
 % % NFFT = 512;
 % % filterCount = 20;
 
+
+% % Code used from
+% % http://www.cs.tut.fi/~puhtunn/ex12/Create_MelFrequencyFilterBank.m
+% %
+
+
 maximumFrequency = samplingFrequency/2;
 maximumMelFrequency = 1127 * log(1 + (maximumFrequency/700));
 
