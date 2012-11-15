@@ -33,7 +33,7 @@ end
 
 figure('Name', 'melFilterBank'); clf;
 plot(melFilterBank');
-title(['Mel Filter Bank for NFFT =', num2str(NFFT), ' with ', num2str(filterCount), ' filters']);
+title(['Mel Filter Bank for NFFT = ', num2str(NFFT), ' with ', num2str(filterCount), ' filters']);
 print('-dpng', 'plots/melFilterBank');
 
 

@@ -1,10 +1,14 @@
-function getMelWeightedSpectrum(signal, filterCount)
+function [melWeightedSpectrum, signalLength] = getMelWeightedSpectrum(signal, filterCount)
 
-
-signal = 'a_pani.wav';
-filterCount = 20;
+% % 
+% % signal = 'a_pani.wav';
+% % filterCount = 20;
 
 [signalSpectrum, signalLength, samplingFrequency] = getSpectrum(signal);
+
+%%%%%%
+filterCount = 20 * round(samplingFrequency/8000);
+%%%%%%
 NFFT = length(signalSpectrum);
 
 melFilterBank = getMelFilterBank(samplingFrequency, NFFT, filterCount);
@@ -21,7 +25,7 @@ end
 figure('Name', 'Mel weighted spectrum'); clf;
 plot(melWeightedSpectrum);
 title('Mel weighted spectrum');
-print('-dpng', 'plots/
+print('-dpng', 'plots/melWeightedSpectrum');
 
 
 end

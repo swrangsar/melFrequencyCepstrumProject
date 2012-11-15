@@ -1,10 +1,15 @@
-function [melWeightedSpectrum, signalLength] = getMelWeightedSpectrum(signal, filterCount)
+function [melWeightedSpectrum, signalLength] = getMelWeightedSpectrum(signal)
 
 % % 
 % % signal = 'a_pani.wav';
 % % filterCount = 20;
 
 [signalSpectrum, signalLength, samplingFrequency] = getSpectrum(signal);
+
+%%%%%%
+filterCount = 20 * floor(samplingFrequency/8000);
+%%%%%%
+
 NFFT = length(signalSpectrum);
 
 melFilterBank = getMelFilterBank(samplingFrequency, NFFT, filterCount);

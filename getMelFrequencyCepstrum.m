@@ -1,15 +1,13 @@
-function melFrequencyCepstrum = getMelFrequencyCepstrum(speechSegment)
+function melFrequencyCepstrum = getMelFrequencyCepstrum(speechSegment, numberOfCoefficients)
 
+
+[melWeightedSpectrum, signalLength] = getMelWeightedSpectrum(speechSegment);
+
+if nargin < 2
+    numberOfCoefficients = signalLength;
 end
 
-
-
-%% get spectrum of the windowed signal
-
-function [signalSpectrum, signalLength] = getSpectrum(windowedSignal)
-
-signalLength = length(windowedSignal);
-N = 2 ^ nextpow2(2 * signalLength);
-signalSpectrum = fft(windowedSignal, N);
+logMelWeightedSpectrum = log(melWeightedSpectrum);
+melFrequencyCepstrum = dct(logMelWeightedSpectrum, numberOfCoefficients);
 
 end
