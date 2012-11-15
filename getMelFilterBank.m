@@ -1,8 +1,8 @@
 function melFilterBank = getMelFilterBank(samplingFrequency, NFFT, filterCount)
 
-samplingFrequency = 8000;
-NFFT = 512;
-filterCount = 20;
+% % samplingFrequency = 8000;
+% % NFFT = 512;
+% % filterCount = 20;
 
 maximumFrequency = samplingFrequency/2;
 maximumMelFrequency = 1127 * log(1 + (maximumFrequency/700));
@@ -31,9 +31,10 @@ for k = 1:filterCount
     
 end
 
-figure(101), plot(melFilterBank');
+figure('Name', 'melFilterBank'); clf;
+plot(melFilterBank');
 title(['Mel Filter Bank for NFFT =', num2str(NFFT), ' with ', num2str(filterCount), ' filters']);
-print('-dpng', 'plots/melFilterBank.png');
+print('-dpng', 'plots/melFilterBank');
 
 
 end
