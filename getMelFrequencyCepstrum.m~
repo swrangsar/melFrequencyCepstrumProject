@@ -1,0 +1,47 @@
+function melFrequencyCepstrum = getMelFrequencyCepstrum(speechSegment)
+
+end
+
+
+
+%% pre-emphasize the input signal
+
+function [preemphasizedSignal, samplingFrequency] = getPreemphasizedSignal(signal)
+
+[y, samplingFrequency] = wavread(signal);
+for k = 1:length(y)
+    if k > 1
+        y(k) = y(k) - (0.97*y(k-1));
+    end
+end
+preemphasizedSignal = y;
+
+end
+
+
+
+%% get windowed central part of a signal
+
+function [windowedSignal, samplingFrequency] = getWindowedSignal(signal)
+
+windowDuration = 0.030; % in ms
+[y, samplingFrequency] = getPreemphasizedSignal(signal);
+
+centralIndex = round(length(y)/2);
+M = round(windowDuration * samplingFrequency);
+startIndex = round(centralIndex - M/2);
+windowedSignal = y(startIndex:startIndex + M-1);
+
+end
+
+
+
+%% get spectrum of the windowed signal
+
+function [signalSpectrum, signalLength] = getSpectrum(windowedSignal)
+
+signalLength = length(windowedSignal);
+N = 2 ^ nextpow2(2 * signalLength));
+signalSpectrum = fft(windowedSignal, N);
+
+end
